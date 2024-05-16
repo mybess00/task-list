@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 function App() {
   const tasks = useAppSelector(state => state.tasks)
   return ( 
-    <main className=' w-[40vw]'>
+    <main className='lg:w-[40vw] w-full'>
       <h1>Task List</h1>
       <div className='flex flex-col gap-4 mt-4'>
         <Link className=' rounded-lg transition-all duration-300 border-2 border-black border-solid hover:bg-[#81818193] hover:border-purple-800' to={'/new-task'}>

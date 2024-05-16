@@ -47,7 +47,7 @@ export default function CreateTask() {
         navigate(-1)
     }
     return (
-        <div className='w-[40vw]'>
+        <div className='lg:w-[40vw] w-full'>
             <Link to={'/'} className='flex text-3xl'>
                 <IoMdArrowRoundBack/>
             </Link>
