@@ -1,10 +1,43 @@
 import './App.css'
+import { useState, useEffect } from 'react'
 import { useAppSelector } from './redux/hooks'
 import TaskContainer from './component/TaskContainer'
+import Pagination from './component/Pagination'
 import { Link } from 'react-router-dom'
+
+
 
 function App() {
   const tasks = useAppSelector(state => state.tasks)
+  const [currentPage, setCurrentPage] = useState(1)
+  const SPLIT_PAGE = 3
+  const INITIAL_INDEX = currentPage === 1 ? 0 : currentPage*SPLIT_PAGE-SPLIT_PAGE
+  const taskEl: JSX.Element[][] = []
+  const getTasksPages = () => {
+    let pageEl: JSX.Element[] = []
+    tasks.forEach((el, index) => {
+      pageEl.push(
+        <TaskContainer 
+          id={el.id} 
+          title={el.title} 
+          description={el.description} 
+          isDone={el.isDone}
+          key={index}/>
+      )
+      if (pageEl.length == SPLIT_PAGE) {
+        taskEl.push(pageEl)
+        pageEl = []
+      }
+    })
+    if (pageEl.length != 0) {
+      taskEl.push(pageEl)
+        pageEl = []
+    }
+  }
+  getTasksPages()
+  useEffect(() => {
+    getTasksPages()
+  }, [currentPage])
   return ( 
     <main className='lg:w-[40vw] w-full'>
       <h1>Task List</h1>
@@ -13,15 +46,9 @@ function App() {
           <button className=' bg-transparent border-none w-full'>Create new Task +</button>
         </Link>
         {
-          tasks.map((element, index) => {
-            return  <TaskContainer 
-                      id={element.id} 
-                      title={element.title} 
-                      description={element.description} 
-                      isDone={element.isDone}
-                      key={index}/>
-          })
+          taskEl[currentPage-1] ? taskEl[currentPage-1].map(el => el) : ""
         }
+        <Pagination page={currentPage} setPage={setCurrentPage} length={taskEl.length} split={SPLIT_PAGE}/>
       </div>
     </main>
   )

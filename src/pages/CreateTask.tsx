@@ -30,7 +30,6 @@ export default function CreateTask() {
             alert('You should complete all data.')
             return
         }
-        console.log('creando')
         if (taskId) {
             dispatch(editTask({
                 id: taskId,

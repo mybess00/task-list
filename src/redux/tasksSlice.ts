@@ -31,12 +31,10 @@ export const tasksSlice = createSlice({
                 description,
                 isDone: false
             })
-            state.forEach(el => console.log(el))
         },
         deleteTask: (state, action: PayloadAction<{id: string}>) => {
             const { id } = action.payload
             const newState = state.filter((element) => element.id !== id)
-            newState.forEach(el => console.log(el))
             return newState
         },
         editTask: (state, action: PayloadAction<{ id: string, title: string, description:string}>) => {
@@ -47,7 +45,6 @@ export const tasksSlice = createSlice({
                 title,
                 description,
             }
-            state.forEach(el => console.log(el))
         },
         toggleDone: (state, action: PayloadAction<{id: string}>) => {
             const { id } = action.payload
@@ -56,7 +53,6 @@ export const tasksSlice = createSlice({
                 ...state[index],
                 isDone: !state[index].isDone
             }
-            state.forEach(el => console.log(el))
         }
     }
 })
