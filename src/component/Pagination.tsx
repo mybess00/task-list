@@ -28,7 +28,7 @@ export default function Pagination ({page, setPage, length, split}: PaginationPr
     for (let i = 0; i < length; i++) {
         pagination[i] = <div 
                             key={i} 
-                            className={`text-center p-2 bg-slate-800 rounded-md cursor-pointer ${page === i+1 ? 'bg-purple-800' : ''} transition-all duration-200`}
+                            className={`text-center p-2 rounded-md cursor-pointer ${page === i+1 ? 'bg-purple-800' : 'bg-slate-800'} transition-all duration-200`}
                             onClick={goPage}> 
                                 {i+1} 
                         </div>

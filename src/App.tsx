@@ -1,5 +1,5 @@
 import './App.css'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useAppSelector } from './redux/hooks'
 import TaskContainer from './component/TaskContainer'
 import Pagination from './component/Pagination'
@@ -11,7 +11,6 @@ function App() {
   const tasks = useAppSelector(state => state.tasks)
   const [currentPage, setCurrentPage] = useState(1)
   const SPLIT_PAGE = 3
-  const INITIAL_INDEX = currentPage === 1 ? 0 : currentPage*SPLIT_PAGE-SPLIT_PAGE
   const taskEl: JSX.Element[][] = []
   const getTasksPages = () => {
     let pageEl: JSX.Element[] = []
@@ -35,9 +34,6 @@ function App() {
     }
   }
   getTasksPages()
-  useEffect(() => {
-    getTasksPages()
-  }, [currentPage])
   return ( 
     <main className='lg:w-[40vw] w-full'>
       <h1>Task List</h1>
