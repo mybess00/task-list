@@ -44,7 +44,7 @@ function App() {
         {
           taskEl[currentPage-1] ? taskEl[currentPage-1].map(el => el) : ""
         }
-        <Pagination page={currentPage} setPage={setCurrentPage} length={taskEl.length} split={SPLIT_PAGE}/>
+        <Pagination page={currentPage} setPage={setCurrentPage} length={taskEl.length}/>
       </div>
     </main>
   )

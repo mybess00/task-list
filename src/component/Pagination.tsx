@@ -3,11 +3,10 @@ import { IoIosArrowBack, IoIosArrowForward  } from "react-icons/io";
 interface PaginationProprs {
     length: number, 
     page: number, 
-    split: number, 
     setPage: React.Dispatch<React.SetStateAction<number>>
 }
 
-export default function Pagination ({page, setPage, length, split}: PaginationProprs)  {
+export default function Pagination ({page, setPage, length}: PaginationProprs)  {
     const pagination = []
     const goNext = () => {
         if (page < length) {
